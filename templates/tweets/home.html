@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Hello World</h1>
+    <div id="tweets">
+        Replace
+    </div>
+    <script>
+
+        const tweetsElement = document.getElementById("tweets")
+        var el1 = "<h1>Hi There1</h1>"
+        var el2 = "<h1>Hi There2</h1>"
+        var el3 = "<h1>Hi There3</h1>"
+        tweetsElement.innerHTML = "Loading..."
+        tweetsElement.innerHTML = el1 + el2 + el3
+        const xhr = new XMLHttpRequest()
+        const method = 'GET'
+        const url = "/tweets"
+        const responseType = "json"
+
+        xhr.responseType = responseType
+        xhr.open(method, url)
+        xhr.onload = function(){
+            const serverResponse = xhr.response
+            var listedItems = xhr.serverResponse.response
+            console.log(listedItems)
+        }
+        xhr.send()
+
+    </script>
+{% endblock content %}
